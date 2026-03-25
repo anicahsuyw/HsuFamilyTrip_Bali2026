@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>峇里島家族旅遊 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#faf6ef;--warm:#fff9f2;--forest:#2d5a3d;--forest2:#3d7a52;--terra:#b85c38;--terra2:#d4724a;--gold:#c9923c;--gold2:#e8b56a;--sand:#e8d5b0;--sand2:#d4b87a;--dark:#2a2218;--mid:#5a4a35;--light:#8a7a65;--sh:0 4px 24px rgba(42,34,24,.10);--sh2:0 2px 12px rgba(42,34,24,.08)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--cream);color:var(--dark);min-height:100vh;overflow-x:hidden;font-size:15px}
+
+/* HERO */
+.hero{position:relative;background:var(--forest);min-height:220px;display:flex;align-items:flex-end;overflow:hidden;padding:0 18px 32px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 75% 0%,rgba(201,146,60,.22) 0%,transparent 60%),radial-gradient(ellipse at 10% 100%,rgba(184,92,56,.18) 0%,transparent 50%),linear-gradient(155deg,#1a3d2a 0%,#2d5a3d 55%,#1e4530 100%)}
+.hero-leaves{position:absolute;right:-8px;top:-8px;font-size:100px;opacity:.07;pointer-events:none;line-height:1}
+.hero-content{position:relative;z-index:1}
+.hero-label{font-size:10px;letter-spacing:3.5px;color:var(--gold2);text-transform:uppercase;margin-bottom:8px;opacity:.9}
+.hero-title{font-family:'Noto Serif TC',serif;font-size:clamp(28px,8vw,42px);font-weight:700;color:var(--cream);line-height:1.15;margin-bottom:6px}
+.hero-sub{font-size:12px;color:var(--sand);font-weight:300;letter-spacing:.5px;opacity:.82}
+.hero-dates{margin-top:14px;display:flex;gap:7px;flex-wrap:wrap}
+.hero-badge{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);color:var(--cream);font-size:11px;padding:4px 12px;border-radius:20px;backdrop-filter:blur(4px);font-weight:500;letter-spacing:.3px}
+
+/* NAV */
+.tab-bar{background:var(--forest);position:sticky;top:0;z-index:100;padding:0 12px;overflow-x:auto;display:flex;gap:0;scrollbar-width:none;border-bottom:2px solid var(--forest2)}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;background:transparent;border:none;color:rgba(255,255,255,.5);font-family:'Noto Sans TC',sans-serif;font-size:12px;font-weight:500;padding:12px 13px 10px;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;letter-spacing:.3px}
+.tab-btn:hover{color:rgba(255,255,255,.82)}
+.tab-btn.active{color:var(--gold2);border-bottom-color:var(--gold2)}
+
+/* CONTENT */
+.content{max-width:640px;margin:0 auto;padding:0 14px 80px}
+.section{display:none}
+.section.active{display:block}
+
+/* DAY HEADER */
+.day-header{padding:26px 0 16px;border-bottom:1px solid var(--sand);margin-bottom:20px;display:flex;align-items:flex-end;gap:14px}
+.day-num{font-family:'Noto Serif TC',serif;font-size:48px;font-weight:700;color:var(--sand2);line-height:1;opacity:.45}
+.day-weekday{font-size:10px;letter-spacing:3px;color:var(--terra);text-transform:uppercase;font-weight:700;margin-bottom:3px}
+.day-title{font-family:'Noto Serif TC',serif;font-size:20px;font-weight:700;color:var(--forest)}
+.day-location{font-size:11px;color:var(--light);margin-top:3px}
+
+/* TIMELINE */
+.timeline{position:relative}
+.timeline::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--sand),var(--sand2),var(--sand))}
+.t-block{position:relative;padding:0 0 18px 64px}
+.t-icon{position:absolute;left:16px;top:4px;width:24px;height:24px;border-radius:50%;background:var(--cream);border:2px solid var(--sand2);display:flex;align-items:center;justify-content:center;font-size:12px;z-index:1}
+.t-time{font-size:10px;color:var(--terra);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px}
+.t-label{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:4px;font-family:'Noto Serif TC',serif}
+.t-desc{font-size:13px;color:var(--mid);line-height:1.75}
+.t-desc li{margin-left:14px;margin-top:2px}
+.t-tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-bottom:5px;letter-spacing:.5px}
+.t-tag.green{background:#d4eadb;color:var(--forest)}
+.t-tag.orange{background:#f5ddd2;color:var(--terra)}
+.t-tag.gold{background:#f5e8d0;color:#8a5a1a}
+
+/* BUTTONS */
+.map-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;background:var(--forest);color:white;font-size:12px;font-weight:600;padding:7px 14px;border-radius:20px;text-decoration:none;transition:background .2s,transform .1s;letter-spacing:.4px;border:none;cursor:pointer}
+.map-btn:hover{background:var(--forest2);transform:translateY(-1px)}
+.map-btn:active{transform:translateY(0)}
+.map-btn.or{background:var(--terra)}
+.map-btn.or:hover{background:var(--terra2)}
+.map-btn.go{background:var(--gold)}
+.map-btn.go:hover{background:var(--gold2)}
+
+/* BOXES */
+.free-box{background:var(--warm);border:1px solid var(--sand);border-left:3px solid var(--gold);border-radius:10px;padding:13px 15px;margin-top:8px}
+.free-box h4{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:7px}
+.free-box ul{font-size:13px;color:var(--mid);line-height:1.9;padding-left:15px}
+.notice-box{background:#fdf5ec;border:1px solid #e8c97a;border-radius:12px;padding:13px 15px;margin:14px 0;font-size:13px;color:#7a5520;line-height:1.72}
+.notice-box strong{color:#5a3a10}
+
+/* SECTION TITLE */
+.section-title{font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--forest);padding:26px 0 12px;border-bottom:1px solid var(--sand);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+
+/* ACCOMMODATION */
+.accom-card{background:white;border:1px solid var(--sand);border-radius:16px;overflow:hidden;margin:14px 0;box-shadow:var(--sh2)}
+.accom-hdr{padding:15px 16px;color:white}
+.accom-hdr.canggu{background:linear-gradient(135deg,var(--terra) 0%,var(--terra2) 100%)}
+.accom-hdr.ubud{background:linear-gradient(135deg,var(--forest) 0%,var(--forest2) 100%)}
+.accom-name{font-family:'Noto Serif TC',serif;font-size:17px;font-weight:700;margin-bottom:2px}
+.accom-dates{font-size:11px;opacity:.82;letter-spacing:.4px}
+.accom-body{padding:14px 16px}
+.accom-addr{font-size:12px;color:var(--mid);line-height:1.65;margin-bottom:11px}
+.accom-info{font-size:12px;color:var(--mid);line-height:1.9;margin-bottom:11px;padding-left:14px}
+
+/* CONTACT */
+.contact-strip{background:linear-gradient(135deg,var(--forest) 0%,#1a3d2a 100%);border-radius:16px;padding:18px;color:white;margin:14px 0;display:flex;align-items:center;gap:14px;box-shadow:var(--sh)}
+.contact-av{width:48px;height:48px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.contact-name{font-family:'Noto Serif TC',serif;font-size:17px;font-weight:700;margin-bottom:2px}
+.contact-role{font-size:10px;color:var(--sand);letter-spacing:1px;text-transform:uppercase;margin-bottom:7px}
+.contact-phone{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:5px 13px;border-radius:20px;font-size:14px;font-weight:700;color:white;text-decoration:none}
+
+/* CARDS */
+.card-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.card-wide{grid-column:1/-1}
+.card{background:white;border:1px solid var(--sand);border-radius:14px;padding:16px;box-shadow:var(--sh2)}
+.card-icon{font-size:22px;margin-bottom:8px}
+.card-title{font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;color:var(--forest);margin-bottom:5px}
+.card-sub{font-size:12px;color:var(--light);line-height:1.6;margin-bottom:9px}
+
+/* FLIGHT */
+.flight-strip{background:linear-gradient(135deg,#1a2a4a 0%,#2a3d6a 100%);border-radius:14px;padding:16px 18px;color:white;margin:14px 0;display:flex;align-items:center;gap:14px}
+.flight-icon{font-size:26px}
+.flight-num{font-size:10px;letter-spacing:2px;opacity:.7;margin-bottom:2px;text-transform:uppercase}
+.flight-route{font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700}
+.flight-time{font-size:12px;opacity:.8;margin-top:2px}
+
+/* PHRASES */
+.phrase-grid{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.phrase-card{background:white;border:1px solid var(--sand);border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:center}
+.phrase-zh{font-size:14px;font-weight:700;color:var(--dark)}
+.phrase-ph{font-size:14px;font-weight:700;color:var(--terra);text-align:center}
+.phrase-note{font-size:10px;color:var(--light);text-align:right;white-space:nowrap}
+
+/* CURRENCY */
+.curr-hero{background:linear-gradient(135deg,var(--gold) 0%,var(--terra) 100%);border-radius:14px;padding:20px;color:white;margin:14px 0;text-align:center}
+.curr-formula{font-family:'Noto Serif TC',serif;font-size:20px;font-weight:700;margin:8px 0}
+.curr-sub{font-size:12px;opacity:.88;line-height:1.75}
+.curr-table{width:100%;border-collapse:collapse;margin-top:14px;border-radius:12px;overflow:hidden}
+.curr-table th{background:var(--forest);color:white;font-size:12px;padding:10px 12px;text-align:left;font-weight:600}
+.curr-table td{padding:9px 12px;font-size:13px;border-bottom:1px solid var(--sand);color:var(--mid)}
+.curr-table tr:nth-child(even) td{background:#fdf9f4}
+.curr-table td:last-child{font-weight:700;color:var(--terra)}
+
+/* PACKING */
+.pack-section{margin:18px 0}
+.pack-section h3{font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;color:var(--forest);margin-bottom:11px;display:flex;align-items:center;gap:7px}
+.pack-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:380px){.pack-grid{grid-template-columns:1fr}}
+.pack-item{display:flex;align-items:flex-start;gap:8px;background:white;border:1px solid var(--sand);border-radius:10px;padding:10px 12px;font-size:13px;color:var(--mid);cursor:pointer;transition:border-color .2s;user-select:none;line-height:1.4}
+.pack-item.checked{background:#f0f7f3;border-color:var(--forest2);color:var(--forest)}
+.pack-item.checked .ck{background:var(--forest);border-color:var(--forest)}
+.pack-item.checked .ck::after{content:'✓';color:white}
+.ck{width:18px;height:18px;min-width:18px;border:2px solid var(--sand2);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .2s;margin-top:1px}
+.plug-img{width:100%;max-width:260px;border-radius:10px;margin-top:6px;border:1px solid var(--sand)}
+
+/* TIPS */
+.tips-list{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.tip-item{background:white;border:1px solid var(--sand);border-radius:14px;padding:14px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--sh2)}
+.tip-emoji{font-size:20px;flex-shrink:0;line-height:1.35;margin-top:1px}
+.tip-title{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.tip-text{font-size:12.5px;color:var(--mid);line-height:1.78}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-leaves">🌿🌺🌴</div>
+  <div class="hero-content">
+    <div class="hero-label">✈ 家族旅遊手冊 2026</div>
+    <h1 class="hero-title">峇里島<br>家族之旅</h1>
+    <p class="hero-sub">5 天 4 夜 · 印度尼西亞 · 巴厘島</p>
+    <div class="hero-dates">
+      <span class="hero-badge">📅 6月10日 – 15日</span>
+      <span class="hero-badge">🏡 Canggu · Ubud</span>
+      <span class="hero-badge">✈ 中華航空 CI771/772</span>
+    </div>
+  </div>
+</div>
+
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" onclick="showTab('day10')">6/10 抵達</button>
+  <button class="tab-btn" onclick="showTab('day11')">6/11 海神廟</button>
+  <button class="tab-btn" onclick="showTab('day12')">6/12 La Brisa</button>
+  <button class="tab-btn" onclick="showTab('day13')">6/13 前往烏布</button>
+  <button class="tab-btn" onclick="showTab('day14')">6/14 烏布探索</button>
+  <button class="tab-btn" onclick="showTab('day15')">6/15 返台</button>
+  <button class="tab-btn" onclick="showTab('info')">住宿 & 聯絡</button>
+  <button class="tab-btn" onclick="showTab('tips')">峇里島須知</button>
+  <button class="tab-btn" onclick="showTab('phrases')">常用語言</button>
+  <button class="tab-btn" onclick="showTab('currency')">匯率換算</button>
+  <button class="tab-btn" onclick="showTab('packing')">行李清單</button>
+</div>
+
+<div class="content">
+
+<!-- DAY 10 -->
+<div class="section active" id="day10">
+  <div class="day-header">
+    <div class="day-num">10</div>
+    <div>
+      <div class="day-weekday">Wednesday · 週三</div>
+      <div class="day-title">抵達峇里島</div>
+      <div class="day-location">📍 Ngurah Rai 機場 → Villa Chagall, Canggu</div>
+    </div>
+  </div>
+  <div class="flight-strip">
+    <div class="flight-icon">✈️</div>
+    <div>
+      <div class="flight-num">中華航空 CI 771</div>
+      <div class="flight-route">桃園 TPE → 峇里島 DPS</div>
+      <div class="flight-time">09:10 起飛 → 14:40 抵達（不需轉機）</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-block">
+      <div class="t-icon">🕖</div>
+      <div class="t-time">07:30</div>
+      <div class="t-label">桃園機場集合</div>
+      <div class="t-desc">請務必準時到達，統一辦理登機手續。帶好護照。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">✈️</div>
+      <div class="t-time">09:10</div>
+      <div class="t-label">CI771 起飛</div>
+      <div class="t-desc">桃園 → 峇里島，飛行約 5.5 小時，無需轉機。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🛬</div>
+      <div class="t-time">14:40</div>
+      <div class="t-label">抵達 Ngurah Rai 國際機場</div>
+      <div class="t-desc">辦理入境手續、領取行李、兌換少量印尼盾備用。出關後由包車司機接機。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🏡</div>
+      <div class="t-time">約 16:00</div>
+      <div class="t-label">抵達 Villa Chagall · Check-in</div>
+      <div class="t-desc">Villa 最早 <strong>14:00</strong> 可入住。安頓行李、休息、熟悉環境。</div>
+      <a class="map-btn" href="https://share.google/5JHSjP9RWqvev2wgy" target="_blank">📍 Google Maps 導航</a>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🍽️</div>
+      <div class="t-time">晚餐</div>
+      <div class="t-label">Shary Shary Restaurant and Bar</div>
+      <div class="t-desc">輕鬆的第一頓晚餐，感受 Canggu 的用餐氛圍。</div>
+      <a class="map-btn or" href="https://maps.google.com/?q=Shary+Shary+Restaurant+and+Bar+Canggu+Bali" target="_blank">📍 餐廳地圖</a>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🌙</div>
+      <div class="t-time">晚上</div>
+      <div class="t-label">探索附近 & 換匯</div>
+      <div class="t-desc">
+        <ul>
+          <li>在 Villa 附近散步，瞭解環境</li>
+          <li>尋找換匯店（建議帶美金換，匯率較佳）</li>
+          <li>享受 Villa 泳池與庭院</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 11 -->
+<div class="section" id="day11">
+  <div class="day-header">
+    <div class="day-num">11</div>
+    <div>
+      <div class="day-weekday">Thursday · 週四</div>
+      <div class="day-title">海神廟 · Meimei 晚餐</div>
+      <div class="day-location">📍 Canggu → Tanah Lot → Meimei BBQ</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-block">
+      <div class="t-icon">☕</div>
+      <div class="t-time">早餐</div>
+      <div class="t-label">附近咖啡廳</div>
+      <div class="t-desc">Canggu 咖啡廳文化盛行，可請 Villa 工作人員推薦步行可達的早餐店。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🏊</div>
+      <div class="t-time">早上</div>
+      <div class="t-label">自由活動</div>
+      <div class="t-desc"></div>
+      <div class="free-box">
+        <h4>🌟 可選擇的活動</h4>
+        <ul>
+          <li>享受 Villa 泳池 & 躺椅曬太陽</li>
+          <li>預約到府按摩（可請 Villa 協助安排）</li>
+          <li>出門逛 Canggu 市集、選購伴手禮</li>
+          <li>去附近 SPA 按摩中心</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🚐</div>
+      <div class="t-time">14:30</div>
+      <div class="t-label">出發前往海神廟</div>
+      <div class="t-desc">從 Villa 出發，車程約 40–60 分鐘，請準時出發。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🌊</div>
+      <div class="t-time">約 15:30</div>
+      <div class="t-label">🌴 海神廟 Tanah Lot</div>
+      <div class="t-desc">
+        峇里島最著名地標，建於海中礁石的印度教聖廟，夕陽時分景色絕美。
+        <ul style="margin-top:6px">
+          <li>入場費約 60,000 IDR / 人</li>
+          <li>進廟需繫沙龍（現場可借）</li>
+          <li>周邊有工藝品攤位可逛</li>
+        </ul>
+      </div>
+      <a class="map-btn" href="https://maps.google.com/?q=Tanah+Lot+Temple+Bali" target="_blank">📍 Google Maps 導航</a>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🍖</div>
+      <div class="t-time">19:00</div>
+      <div class="t-label">🔥 晚餐：Meimei Southeast Asian Barbeque</div>
+      <div class="t-desc">
+        <span class="t-tag orange">熱門餐廳，建議提前預約</span><br>
+        東南亞風格炭烤料理，氣氛絕佳，是 Canggu 不可錯過的用餐體驗。
+      </div>
+      <a class="map-btn or" href="https://maps.google.com/?q=Meimei+Southeast+Asian+Barbeque+Canggu+Bali" target="_blank">📍 Google Maps 導航</a>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 12 -->
+<div class="section" id="day12">
+  <div class="day-header">
+    <div class="day-num">12</div>
+    <div>
+      <div class="day-weekday">Friday · 週五</div>
+      <div class="day-title">漂浮早餐 · La Brisa 夕陽</div>
+      <div class="day-location">📍 Villa Chagall, Canggu</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-block">
+      <div class="t-icon">🍳</div>
+      <div class="t-time">09:00</div>
+      <div class="t-label">✨ 廚師特製漂浮早餐</div>
+      <div class="t-desc">
+        <span class="t-tag gold">特別安排</span><br>
+        Villa 廚師到府準備「漂浮早餐」（Floating Breakfast）— 在泳池中享用精美早餐，超級網美、非常峇里島！
+      </div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🌿</div>
+      <div class="t-time">上午 自由活動</div>
+      <div class="t-label">在 Canggu 盡情放鬆</div>
+      <div class="t-desc"></div>
+      <div class="free-box">
+        <h4>🌟 今日可選擇的活動</h4>
+        <ul>
+          <li>繼續享受 Villa 泳池 & 日光浴</li>
+          <li>預約到府峇里式按摩</li>
+          <li>逛 Canggu 市區、買伴手禮</li>
+          <li>喝下午茶、看海</li>
+        </ul>
+      </div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🌅</div>
+      <div class="t-time">約 16:00</div>
+      <div class="t-label">🍹 La Brisa Bali — 夕陽海灘酒吧</div>
+      <div class="t-desc">
+        <span class="t-tag orange">15:45 從 Villa 出發 / 16:00 集合</span><br>
+        Canggu 最美海灘酒吧之一，在椰影下欣賞峇里島夕陽，點一杯新鮮果汁或雞尾酒，放鬆心情。
+      </div>
+      <a class="map-btn or" href="https://maps.google.com/?q=La+Brisa+Bali+Canggu" target="_blank">📍 Google Maps 導航</a>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🌙</div>
+      <div class="t-time">晚上</div>
+      <div class="t-label">自由晚餐 & 享受 Villa</div>
+      <div class="t-desc">可請 Villa 工作人員推薦附近餐廳。<br>明天 <strong>11:00 前需退房</strong>，請今晚盡量整理好行李！</div>
+    </div>
+  </div>
+  <div class="notice-box">
+    📦 <strong>行李提醒：</strong>明天（6/13）上午 11:00 前需退出 Villa Chagall。導遊 Ani 約 <strong>11:00</strong> 來接大家前往烏布，請今晚整理好行李。
+  </div>
+</div>
+
+<!-- DAY 13 -->
+<div class="section" id="day13">
+  <div class="day-header">
+    <div class="day-num">13</div>
+    <div>
+      <div class="day-weekday">Saturday · 週六</div>
+      <div class="day-title">前往烏布 · 市區初探</div>
+      <div class="day-location">📍 Canggu → Villa Moana, Ubud</div>
+    </div>
+  </div>
+  <div class="notice-box">
+    🚐 <strong>今日重要：</strong>導遊 Ani 上午 <strong>11:00</strong> 來到 Villa Chagall 接大家，請 11:00 前完成退房。全程中文導遊陪同，請放心！
+  </div>
+  <div class="contact-strip" style="margin:12px 0">
+    <div class="contact-av">👨‍✈️</div>
+    <div>
+      <div class="contact-name">導遊 Ani</div>
+      <div class="contact-role">中文嚮導 · 全程陪同</div>
+      <a href="tel:+6281228781682" class="contact-phone">📞 +62-812-2878-1682</a>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-block">
+      <div class="t-icon">☕</div>
+      <div class="t-time">早上</div>
+      <div class="t-label">最後的 Canggu 早餐 & 收行李</div>
+      <div class="t-desc">附近咖啡廳用餐。<strong>11:00 前完成退房</strong>。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🚐</div>
+      <div class="t-time">11:00</div>
+      <div class="t-label">導遊 Ani 來接 · 出發烏布</div>
+      <div class="t-desc">Canggu → Ubud 車程約 1.5–2 小時。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🍜</div>
+      <div class="t-time">午餐</div>
+      <div class="t-label">導遊安排順路餐廳</div>
+      <div class="t-desc">由 Ani 帶領前往當地推薦餐廳用餐。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🏡</div>
+      <div class="t-time">14:00</div>
+      <div class="t-label">抵達 Villa Moana · Check-in</div>
+      <div class="t-desc">由導遊 Ani 協助辦理入住，安頓行李、休息。</div>
+      <a class="map-btn" href="https://maps.google.com/?q=F7JG+6VQ,+Peliatan,+Kecamatan+Ubud,+Kabupaten+Gianyar,+Bali" target="_blank">📍 Google Maps 導航</a>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🏙️</div>
+      <div class="t-time">下午 / 傍晚</div>
+      <div class="t-label">烏布市區散步</div>
+      <div class="t-desc">
+        前往烏布市中心，逛手工藝品街道，感受烏布的藝術氛圍。可請 Ani 帶路，也可自由漫步。
+      </div>
+      <a class="map-btn" href="https://maps.google.com/?q=Ubud+Palace+Bali" target="_blank">📍 烏布王宮</a>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🍽️</div>
+      <div class="t-time">晚餐</div>
+      <div class="t-label">烏布市區晚餐</div>
+      <div class="t-desc">由導遊 Ani 推薦當地餐廳，享用烏布特色料理。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🎭</div>
+      <div class="t-time">19:30（可選）</div>
+      <div class="t-label">🎶 Semara Ratih 克差舞蹈表演</div>
+      <div class="t-desc">
+        <span class="t-tag green">每週六 19:30</span><br>
+        想看峇里島傳統舞蹈的家人，可請 Ani 帶路前往。<strong>不想去的人</strong>可先請導遊送回 Villa 休息，分兩組完全沒問題！
+      </div>
+      <a class="map-btn" href="https://maps.google.com/?q=Semara+Ratih+Ubud+Bali" target="_blank">📍 Google Maps</a>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 14 -->
+<div class="section" id="day14">
+  <div class="day-header">
+    <div class="day-num">14</div>
+    <div>
+      <div class="day-weekday">Sunday · 週日</div>
+      <div class="day-title">傳統村落 · 聖泉寺</div>
+      <div class="day-location">📍 Ubud，導遊 Ani 全程陪同</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-block">
+      <div class="t-icon">☕</div>
+      <div class="t-time">早餐</div>
+      <div class="t-label">附近咖啡廳</div>
+      <div class="t-desc">烏布有許多舒適的早餐咖啡廳，可請導遊 Ani 推薦。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🏘️</div>
+      <div class="t-time">上午</div>
+      <div class="t-label">🌳 Penglipuran 傳統村落</div>
+      <div class="t-desc">
+        <span class="t-tag green">以體力為準，可請 Ani 彈性調整</span><br>
+        全峇里島保存最完整的傳統村落，竹子圍牆整齊，非常有特色。如覺得辛苦可告知 Ani 安排替代景點。
+      </div>
+      <a class="map-btn" href="https://maps.google.com/?q=Penglipuran+Village+Bali" target="_blank">📍 Google Maps</a>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🍜</div>
+      <div class="t-time">午餐</div>
+      <div class="t-label">導遊安排順路餐廳</div>
+      <div class="t-desc">由 Ani 帶領前往當地推薦餐廳。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">💧</div>
+      <div class="t-time">下午</div>
+      <div class="t-label">⛩️ 聖泉寺 Tirta Empul</div>
+      <div class="t-desc">
+        峇里島最神聖水廟，可在聖泉中進行淨化儀式，泉水清涼。非常特別的文化體驗。
+        <ul style="margin-top:6px">
+          <li>需準備泳衣（穿在衣服下），廟方提供沙龍</li>
+          <li>入場費約 50,000 IDR / 人</li>
+          <li>不想下水者在岸邊觀賞即可</li>
+        </ul>
+      </div>
+      <a class="map-btn" href="https://maps.google.com/?q=Tirta+Empul+Temple+Bali" target="_blank">📍 Google Maps 導航</a>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🏛️</div>
+      <div class="t-time">傍晚</div>
+      <div class="t-label">烏布文化 & 返回 Villa</div>
+      <div class="t-desc">
+        <span class="t-tag green">以個人體力彈性調整</span><br>
+        可繼續逛烏布市集、手工藝品、喝下午茶。<br>
+        <strong>彈性：</strong>若部分家人累了，可請 Ani 先送回 Villa，其餘人繼續探索。
+      </div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🍽️</div>
+      <div class="t-time">晚餐</div>
+      <div class="t-label">烏布市區晚餐</div>
+      <div class="t-desc">請導遊 Ani 推薦，或 Villa 附近自由用餐。<br>明天約 <strong>10:30 出發前往機場</strong>，請今晚整理好行李！</div>
+    </div>
+  </div>
+  <div class="notice-box">
+    📦 <strong>行李提醒：</strong>明天（6/15）約 <strong>10:30 出發</strong>前往機場，請今晚整理好所有行李，確認不遺漏。
+  </div>
+</div>
+
+<!-- DAY 15 -->
+<div class="section" id="day15">
+  <div class="day-header">
+    <div class="day-num">15</div>
+    <div>
+      <div class="day-weekday">Monday · 週一</div>
+      <div class="day-title">返回台灣</div>
+      <div class="day-location">📍 Villa Moana → 機場 → 桃園</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <div class="t-block">
+      <div class="t-icon">🌅</div>
+      <div class="t-time">早上</div>
+      <div class="t-label">最後的烏布早晨</div>
+      <div class="t-desc">可在 Villa 附近享用最後一頓峇里島早餐，感受烏布清晨的寧靜。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🚐</div>
+      <div class="t-time">約 10:30</div>
+      <div class="t-label">出發前往機場</div>
+      <div class="t-desc">烏布 → 機場車程約 1.5 小時，<strong>務必預留充裕時間</strong>。導遊 Ani 安排途中順路午餐。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🍜</div>
+      <div class="t-time">途中</div>
+      <div class="t-label">導遊安排順路午餐</div>
+      <div class="t-desc">由 Ani 帶領享用最後一頓峇里島料理。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🛫</div>
+      <div class="t-time">14:00</div>
+      <div class="t-label">抵達 Ngurah Rai 機場</div>
+      <div class="t-desc">辦理登機手續、出境、免稅購物。</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">✈️</div>
+      <div class="t-time">15:55</div>
+      <div class="t-label">CI772 起飛</div>
+      <div class="t-desc">峇里島 DPS → 桃園 TPE</div>
+    </div>
+    <div class="t-block">
+      <div class="t-icon">🏠</div>
+      <div class="t-time">21:20</div>
+      <div class="t-label">抵達桃園機場</div>
+      <div class="t-desc">歡迎回家！帶著美好的峇里島回憶回到台灣 🌺</div>
+    </div>
+  </div>
+  <div class="flight-strip">
+    <div class="flight-icon">✈️</div>
+    <div>
+      <div class="flight-num">中華航空 CI 772</div>
+      <div class="flight-route">峇里島 DPS → 桃園 TPE</div>
+      <div class="flight-time">15:55 起飛 → 21:20 抵達</div>
+    </div>
+  </div>
+</div>
+
+<!-- INFO -->
+<div class="section" id="info">
+  <div class="section-title">🏡 住宿資訊</div>
+  <div class="accom-card">
+    <div class="accom-hdr canggu">
+      <div class="accom-name">Villa Chagall</div>
+      <div class="accom-dates">📅 6月10日（週三）→ 6月13日（週六）· 共 3 晚</div>
+    </div>
+    <div class="accom-body">
+      <div class="accom-addr">📍 Jalan Canggu Padang Linjong 52c1, Canggu, Kabupaten Badung, Bali 80361</div>
+      <ul class="accom-info">
+        <li>Check-in：14:00 起</li>
+        <li>Check-out：6月13日（週六）<strong>11:00 前</strong></li>
+        <li>地區：Canggu（愜閒海灘區）</li>
+      </ul>
+      <a class="map-btn" href="https://share.google/5JHSjP9RWqvev2wgy" target="_blank">📍 Google Maps 導航</a>
+    </div>
+  </div>
+  <div class="accom-card">
+    <div class="accom-hdr ubud">
+      <div class="accom-name">Villa Moana</div>
+      <div class="accom-dates">📅 6月13日（週六）→ 6月15日（週一）· 共 2 晚</div>
+    </div>
+    <div class="accom-body">
+      <div class="accom-addr">📍 F7JG+6VQ, Peliatan, Kecamatan Ubud, Kabupaten Gianyar, Bali</div>
+      <ul class="accom-info">
+        <li>Check-in：6月13日（週六），由導遊 Ani 協助辦理</li>
+        <li>Check-out：6月15日（週一）早上</li>
+        <li>地區：Ubud Peliatan（烏布藝術文化區）</li>
+      </ul>
+      <a class="map-btn" href="https://maps.google.com/?q=F7JG+6VQ,+Peliatan,+Kecamatan+Ubud,+Kabupaten+Gianyar,+Bali" target="_blank">📍 Google Maps 導航</a>
+    </div>
+  </div>
+
+  <div class="section-title">🗺️ 地區介紹</div>
+
+  <div style="background:white;border:1px solid var(--sand);border-radius:16px;overflow:hidden;margin:0 0 14px;box-shadow:var(--sh2)">
+    <div style="background:linear-gradient(135deg,var(--terra) 0%,var(--terra2) 100%);padding:14px 16px;color:white">
+      <div style="font-size:11px;letter-spacing:2px;opacity:.8;text-transform:uppercase;margin-bottom:3px">6/10 – 6/13 · 前三晚</div>
+      <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700">Canggu 坎古</div>
+    </div>
+    <div style="padding:16px">
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+        <span style="background:#f5ddd2;color:var(--terra);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px">🏄 衝浪聖地</span>
+        <span style="background:#f5ddd2;color:var(--terra);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px">☕ 咖啡廳文化</span>
+        <span style="background:#f5ddd2;color:var(--terra);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px">🌅 海灘夕陽</span>
+        <span style="background:#f5ddd2;color:var(--terra);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px">🎨 文青風格</span>
+      </div>
+      <p style="font-size:13px;color:var(--mid);line-height:1.85">
+        Canggu 是峇里島近年最受歡迎的時尚海灘區，吸引大批衝浪客與創意工作者聚集。整個區域充滿設計感十足的咖啡廳、餐廳與精品店，街道雖不算寬整，但步行可達的店家密度極高，非常適合悠閒漫步探索。
+      </p>
+      <div style="height:1px;background:var(--sand);margin:12px 0"></div>
+      <div style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:6px">✦ 地區特色</div>
+      <ul style="font-size:13px;color:var(--mid);line-height:1.9;padding-left:14px">
+        <li><strong>咖啡廳文化</strong>：各式精緻早午餐、網美咖啡廳隨處可見，是享用峇里島早餐的最佳地點</li>
+        <li><strong>海灘 & 衝浪</strong>：Batu Bolong、Echo Beach 等海灘夕陽美景一流，每日下午聚集大批觀賞人潮</li>
+        <li><strong>按摩 SPA</strong>：價格實惠，60 分鐘全身按摩約 NT$400–700，Villa 也可預約到府服務</li>
+        <li><strong>購物</strong>：手工藝品、峇里島紀念品、服飾琳瑯滿目，適合購買伴手禮</li>
+        <li><strong>交通</strong>：區域較分散，建議以包車或 Grab 為主，路況複雜，不熟悉者不建議自行騎車</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background:white;border:1px solid var(--sand);border-radius:16px;overflow:hidden;margin:0 0 14px;box-shadow:var(--sh2)">
+    <div style="background:linear-gradient(135deg,var(--forest) 0%,var(--forest2) 100%);padding:14px 16px;color:white">
+      <div style="font-size:11px;letter-spacing:2px;opacity:.8;text-transform:uppercase;margin-bottom:3px">6/13 – 6/15 · 後兩晚</div>
+      <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700">Ubud 烏布</div>
+    </div>
+    <div style="padding:16px">
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+        <span style="background:#d4eadb;color:var(--forest);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px">🎭 傳統藝術</span>
+        <span style="background:#d4eadb;color:var(--forest);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px">🌿 自然山林</span>
+        <span style="background:#d4eadb;color:var(--forest);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px">⛩️ 宗教聖地</span>
+        <span style="background:#d4eadb;color:var(--forest);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px">🛕 文化深度</span>
+      </div>
+      <p style="font-size:13px;color:var(--mid);line-height:1.85">
+        烏布是峇里島的文化藝術靈魂，坐落於島中部的山區，氣候比南部海岸涼爽宜人。烏布以傳統舞蹈、木雕、繪畫與精緻工藝著稱，街道兩旁盡是手工藝品店、藝廊與傳統廟宇，瀰漫濃厚的精神信仰氛圍，是深度感受峇里島文化的最佳選擇。
+      </p>
+      <div style="height:1px;background:var(--sand);margin:12px 0"></div>
+      <div style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:6px">✦ 地區特色</div>
+      <ul style="font-size:13px;color:var(--mid);line-height:1.9;padding-left:14px">
+        <li><strong>文化藝術</strong>：烏布王宮每晚有傳統克差舞（Kecak）表演，烏布市集販售各式精緻手工藝品</li>
+        <li><strong>自然景觀</strong>：層層梯田、翠綠山谷，景色與 Canggu 截然不同，空氣清新涼爽</li>
+        <li><strong>宗教聖地</strong>：聖泉寺（Tirta Empul）是峇里島最重要的淨化水廟，儀式感十足</li>
+        <li><strong>飲食</strong>：烏布市區有大量道地餐廳，從傳統印尼料理到國際美食應有盡有，消費也相對實惠</li>
+        <li><strong>節奏</strong>：整體氛圍比 Canggu 更沉靜、悠閒，適合放慢腳步感受峇里島的靈性一面</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title">📞 重要聯絡人</div>
+  <div class="contact-strip">
+    <div class="contact-av">👨‍✈️</div>
+    <div>
+      <div class="contact-name">導遊 Ani</div>
+      <div class="contact-role">中文嚮導 · 烏布全程陪同（6/13–15）</div>
+      <a href="tel:+6281228781682" class="contact-phone">📞 +62-812-2878-1682</a>
+    </div>
+  </div>
+  <div class="notice-box">
+    💡 <strong>如何聯繫 Ani：</strong>可用 <strong>WhatsApp</strong> 或直撥電話。全程中文溝通，不需擔心語言問題。
+  </div>
+
+  <div class="section-title">🚨 緊急電話</div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-icon">🆘</div>
+      <div class="card-title">綜合緊急求救</div>
+      <div class="card-sub">不確定要打給誰時撥這支</div>
+      <a class="map-btn" href="tel:112">📞 112</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚓</div>
+      <div class="card-title">警察報案</div>
+      <div class="card-sub">遺失物品、緊急事故</div>
+      <a class="map-btn or" href="tel:110">📞 110</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚑</div>
+      <div class="card-title">救護車</div>
+      <div class="card-sub">醫療緊急情況</div>
+      <a class="map-btn or" href="tel:118">📞 118 / 119</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏥</div>
+      <div class="card-title">BIMC Hospital</div>
+      <div class="card-sub">外籍人士友善醫院，可英文問診</div>
+      <a class="map-btn or" href="https://maps.google.com/?q=BIMC+Hospital+Bali+Kuta" target="_blank">📍 地圖</a>
+    </div>
+  </div>
+</div>
+
+<!-- TIPS -->
+<div class="section" id="tips">
+  <div class="section-title">🌴 峇里島必知須知</div>
+  <div class="tips-list">
+    <div class="tip-item">
+      <div class="tip-emoji">💵</div>
+      <div>
+        <div class="tip-title">換匯：帶美金現鈔最划算</div>
+        <div class="tip-text">台灣先換成美金，到峇里島後再換印尼盾（IDR），匯率最佳。<strong>避免在機場換匯</strong>，只換少量應急即可。Canggu 和 Ubud 市區有許多換匯攤，挑匯率最好的換。</div>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-emoji">🌡️</div>
+      <div>
+        <div class="tip-title">天氣：炎熱潮濕，防曬非常重要</div>
+        <div class="tip-text">六月峇里島氣溫約 27–33°C，屬乾季，是旅遊旺季。<strong>SPF50+ 防曬乳、太陽眼鏡、帽子</strong>缺一不可。戶外活動後多補充水分。</div>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-emoji">👘</div>
+      <div>
+        <div class="tip-title">進廟規定：需繫沙龍</div>
+        <div class="tip-text">進入印度教聖廟（如聖泉寺、海神廟）<strong>必須在腰部繫上沙龍</strong>，廟方通常免費提供。進廟請保持安靜尊重。</div>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-emoji">🍶</div>
+      <div>
+        <div class="tip-title">飲食安全：不喝生水</div>
+        <div class="tip-text"><strong>請勿直接飲用自來水</strong>，只喝瓶裝礦泉水。當地熟食烹飪普遍安全。便利商店（Indomaret / Alfamart）可購買便宜瓶裝水。</div>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-emoji">🛺</div>
+      <div>
+        <div class="tip-title">交通：包車最方便</div>
+        <div class="tip-text">景點間距離遠，以<strong>包車</strong>為主。也可用 <strong>Grab App</strong>（類似台灣的 Uber）叫車，方便且透明計費。摩托車不建議長輩騎乘。</div>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-emoji">📱</div>
+      <div>
+        <div class="tip-title">網路：購買當地 SIM 卡</div>
+        <div class="tip-text">機場入境大廳即可買 Telkomsel 或 XL 預付卡，約 NT$200–400，含數 GB 流量。也可出發前購買 eSIM 更方便。</div>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-emoji">🙏</div>
+      <div>
+        <div class="tip-title">文化禮儀：尊重當地信仰</div>
+        <div class="tip-text">常見祭祀花籃（Canang Sari）放在地上，<strong>請勿踩踏</strong>。遇廟會遊行請靠邊讓行。面帶微笑，尊重都能換來熱情回應。</div>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-emoji">💊</div>
+      <div>
+        <div class="tip-title">健康準備</div>
+        <div class="tip-text">建議攜帶：腸胃藥、退燒感冒藥、蚊蟲噴霧（防登革熱）、OK繃、暈車藥（山路多）。有慢性病請帶足藥量。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHRASES -->
+<div class="section" id="phrases">
+  <div class="section-title">🗣️ 常用印尼語</div>
+  <div class="notice-box">
+    💡 以下為印尼語<strong>中文音示意</strong>，讀出來當地人都能理解！遇到不會說的情況，比手劃腳 + 微笑也很好用 😊
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:2px;padding:4px 14px 2px;font-size:10px;color:var(--light);font-weight:700;letter-spacing:1px">
+    <span>中文意思</span><span style="text-align:center">唸出來 🔊</span><span style="text-align:right">備注</span>
+  </div>
+  <div class="phrase-grid">
+    <div class="phrase-card"><div class="phrase-zh">你好</div><div class="phrase-ph">哈囉</div><div class="phrase-note">Halo</div></div>
+    <div class="phrase-card"><div class="phrase-zh">謝謝</div><div class="phrase-ph">特里馬 卡西</div><div class="phrase-note">Terima kasih</div></div>
+    <div class="phrase-card"><div class="phrase-zh">不客氣</div><div class="phrase-ph">薩馬 薩馬</div><div class="phrase-note">Sama-sama</div></div>
+    <div class="phrase-card"><div class="phrase-zh">好的 / 對</div><div class="phrase-ph">噫亞</div><div class="phrase-note">Iya / Ya</div></div>
+    <div class="phrase-card"><div class="phrase-zh">不 / 不要</div><div class="phrase-ph">蒂達</div><div class="phrase-note">Tidak</div></div>
+    <div class="phrase-card"><div class="phrase-zh">多少錢？</div><div class="phrase-ph">ㄅ拉巴？</div><div class="phrase-note">Berapa?</div></div>
+    <div class="phrase-card"><div class="phrase-zh">太貴了</div><div class="phrase-ph">馬哈爾 色卡利</div><div class="phrase-note">Mahal sekali</div></div>
+    <div class="phrase-card"><div class="phrase-zh">便宜一點</div><div class="phrase-ph">姆拉 斯地克</div><div class="phrase-note">Murah sedikit</div></div>
+    <div class="phrase-card"><div class="phrase-zh">好吃！</div><div class="phrase-ph">哦那克！</div><div class="phrase-note">Enak!</div></div>
+    <div class="phrase-card"><div class="phrase-zh">廁所在哪？</div><div class="phrase-ph">卡馬爾曼地 地馬那？</div><div class="phrase-note">Kamar mandi di mana?</div></div>
+    <div class="phrase-card"><div class="phrase-zh">帶我去...</div><div class="phrase-ph">托隆 安塔爾 葛...</div><div class="phrase-note">Tolong antar ke...</div></div>
+    <div class="phrase-card"><div class="phrase-zh">停這裡</div><div class="phrase-ph">ㄅ爾漢地 地西尼</div><div class="phrase-note">Berhenti di sini</div></div>
+    <div class="phrase-card"><div class="phrase-zh">往左轉</div><div class="phrase-ph">基里</div><div class="phrase-note">Kiri</div></div>
+    <div class="phrase-card"><div class="phrase-zh">往右轉</div><div class="phrase-ph">卡南</div><div class="phrase-note">Kanan</div></div>
+    <div class="phrase-card"><div class="phrase-zh">直走</div><div class="phrase-ph">魯魯斯</div><div class="phrase-note">Lurus</div></div>
+    <div class="phrase-card"><div class="phrase-zh">幫我叫計程車</div><div class="phrase-ph">托隆 胖幾岸 塔克西</div><div class="phrase-note">Tolong panggilkan taksi</div></div>
+    <div class="phrase-card"><div class="phrase-zh">我不舒服</div><div class="phrase-ph">薩亞 蒂達 色哈</div><div class="phrase-note">Saya tidak sehat</div></div>
+    <div class="phrase-card"><div class="phrase-zh">救命！</div><div class="phrase-ph">托隆！</div><div class="phrase-note">Tolong!</div></div>
+  </div>
+</div>
+
+<!-- CURRENCY -->
+<div class="section" id="currency">
+  <div class="section-title">💱 匯率換算</div>
+  <div class="curr-hero">
+    <div style="font-size:12px;opacity:.85;margin-bottom:4px">簡易換算口訣</div>
+    <div class="curr-formula">去掉最後 3 個零，再乘以 2</div>
+    <div class="curr-sub">
+      100,000 IDR → 100 × 2 = <strong>約 NT$200</strong><br>
+      500,000 IDR → 500 × 2 = <strong>約 NT$1,000</strong>
+    </div>
+  </div>
+  <table class="curr-table">
+    <thead><tr><th>印尼盾（IDR）</th><th>換算步驟</th><th>約台幣（NT$）</th></tr></thead>
+    <tbody>
+      <tr><td>10,000 IDR</td><td>10 × 2</td><td>約 NT$20</td></tr>
+      <tr><td>20,000 IDR</td><td>20 × 2</td><td>約 NT$40</td></tr>
+      <tr><td>50,000 IDR</td><td>50 × 2</td><td>約 NT$100</td></tr>
+      <tr><td>100,000 IDR</td><td>100 × 2</td><td>約 NT$200</td></tr>
+      <tr><td>200,000 IDR</td><td>200 × 2</td><td>約 NT$400</td></tr>
+      <tr><td>500,000 IDR</td><td>500 × 2</td><td>約 NT$1,000</td></tr>
+      <tr><td>1,000,000 IDR</td><td>1,000 × 2</td><td>約 NT$2,000</td></tr>
+    </tbody>
+  </table>
+  <div class="notice-box" style="margin-top:14px">
+    💡 <strong>換匯小技巧：</strong>帶<strong>美金現鈔</strong>到峇里島換匯，匯率最佳。Canggu 和 Ubud 市區都有換匯攤，先比較幾家再換。機場匯率最差，只換少量應急交通費即可。
+  </div>
+</div>
+
+<!-- PACKING -->
+<div class="section" id="packing">
+  <div class="section-title">🧳 行李清單</div>
+  <p style="font-size:13px;color:var(--light);margin-bottom:18px">點擊項目可勾選打包完成 ✓</p>
+
+  <div class="pack-section">
+    <h3>📄 重要文件</h3>
+    <div class="pack-grid">
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>護照（有效期 6 個月以上）</div>
+    </div>
+  </div>
+
+  <div class="pack-section">
+    <h3>👕 衣物</h3>
+    <div class="pack-grid">
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>輕薄透氣上衣 × 5–6 件</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>短褲 / 薄裙 × 3 件</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>泳衣 × 2 套</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>輕薄外套（冷氣場所）</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>舒適防滑涼鞋</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>好走的包鞋 / 運動鞋</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>長袖薄衫（進廟遮肩用）</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>內衣褲 × 足夠數量</div>
+    </div>
+  </div>
+
+  <div class="pack-section">
+    <h3>🌞 防曬 & 盥洗</h3>
+    <div class="pack-grid">
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>防曬乳 SPF50+（重要！）</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>太陽眼鏡</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>遮陽帽</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>蚊蟲防護噴霧</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>個人洗髮沐浴用品</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>個人牙刷牙膏</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>濕紙巾 / 紙巾</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>小手提袋（逛街備用）</div>
+    </div>
+  </div>
+
+  <div class="pack-section">
+    <h3>💊 藥品</h3>
+    <div class="pack-grid">
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>個人慢性病藥（帶足）</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>腸胃藥 / 止瀉藥</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>退燒感冒藥</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>暈車藥</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>消毒藥水 + OK繃</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>過敏藥（如有需要）</div>
+    </div>
+  </div>
+
+  <div class="pack-section">
+    <h3>🔌 電子 & 其他</h3>
+    <div class="pack-grid">
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>手機充電線 & 充電頭</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>行動電源</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>相機 / 充電電池</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>美金現鈔（換匯用）</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>峇里島 SIM卡 / eSIM</div>
+      <div class="pack-item" onclick="togglePack(this)"><span class="ck"></span>耳塞（飛機睡眠用）</div>
+    </div>
+    <div style="margin-top:14px;background:white;border:1px solid var(--sand);border-radius:14px;padding:14px 16px;">
+      <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:4px">🔌 轉接頭（Type C 雙圓孔）</div>
+      <div style="font-size:12px;color:var(--mid);line-height:1.7;margin-bottom:10px">
+        峇里島插座為 <strong>雙圓孔（Type C）</strong>，台灣插頭（扁兩孔）無法直接使用。<br>
+        請購買「台灣→歐式圓孔」轉接頭，超商或機場都有售。
+      </div>
+      <img src="data:image/jpeg;base64,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" alt="Type C 轉接頭示意圖" class="plug-img">
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const map={'day10':0,'day11':1,'day12':2,'day13':3,'day14':4,'day15':5,'info':6,'tips':7,'phrases':8,'currency':9,'packing':10};
+  if(map[id]!==undefined) document.querySelectorAll('.tab-btn')[map[id]].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function togglePack(el){el.classList.toggle('checked')}
+</script>
+</body>
+</html>
